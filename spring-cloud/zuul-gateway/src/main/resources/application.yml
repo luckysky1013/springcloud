@@ -1,0 +1,74 @@
+server:
+  port: 8040
+spring:
+  application:
+    name: microservice-zuul-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+#Zuul 配置路由的几种方式
+#1 忽略指定微服务
+#zuul:
+#  ignored-services: service-provider
+
+
+#2 指定微服务访问的路径 ,微服务在Eureka注册的名称
+#zuul:
+#  routes:
+#    service-consumer: /user/**
+
+#3 忽略所有微服务 ，只路由指定微服务
+#zuul:
+#  ignored-services:  '*' #使用*可代表忽略所有微服务
+#  routes:
+#    service-provider: /user/**
+
+# 4  同时指定微服务的serviceId和对应路径
+#zuul:
+#  routes:
+#    user-route:  #该配置方式中，user-route只是给路由起一个名字 ，可以自定义
+#      service-id: service-provider
+#        path: /user/**
+
+# 5 同时指定path和url
+#zuul:
+#  routes:
+#    user-routes:
+#      url: http://localhost:8080/ # 指定的url
+#      path: /user/**  #url 对应的路径
+
+# 6 同时指定path和url  并且不破坏zuul的hystrix 、ribbon 特性
+#zuul:
+#  routes:
+#    user-routes:
+#      path: /user/**
+#      service-id: microservice-provider-user
+#ribbon:
+#  eureka:
+#    enabled: false  #为ribbon 禁用Eureka
+#microservice-provider-user:
+#  ribbon:
+#    listOfServers: localhost:8000,localhost:8001
+
+
+#8  实现细粒度的路由控制 ，代理某个微服务，同时保护该微服务的某些敏感路径
+#zuul:
+#  ignored-patterns:  /**/admin/** #忽略所有包含admin的路径
+#  routes:
+#    service-provider: /user/**
+
+logging:
+  level:
+    com.netflix: debug
+
+# zuul  的安全 与Header
+#同一个系统中的服务之间 共享header  ，应防止一些敏感的header 外泄
+#zuul:
+#  routes:
+#    service-provider:
+#      path: /user/**
+#      url: http://localhost:8000/
+#  sensitive-headers: Host #全局指定敏感header
+

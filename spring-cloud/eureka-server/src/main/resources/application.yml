@@ -1,0 +1,23 @@
+server:
+  port: 8761
+eureka:
+  client:
+    # 表示是否注册自身到eureka服务器
+    register-with-eureka: false
+    # 是否从eureka上获取注册信息
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  instance:
+    hostname: eureka-server
+  server:
+  # 当Eureka server 节点在短时间内丢失过多客户端(网络分区故障),进入自我保护模式，Eureka server 保护服务注册表的信息，不会
+  # 不会注销任何微服务 ，网络故障恢复后 ，该节点自动退出自我保护模式。
+  # PS：eureka server 默认90秒内没有收到某个微服务实例的心跳，就回注销该实例。
+  #自我保护模式是一种应对网络异常的安全保护措施，宁可保留所有微服务，也不盲目注销任何健康的微服务。让Eureka集群更加假装 稳定
+    enable-self-preservation: false #spring cloud 的自我保护机制
+    eviction-interval-timer-in-ms: 10   #清理无效节点,默认60*1000毫秒,即60秒
+
+
+
+

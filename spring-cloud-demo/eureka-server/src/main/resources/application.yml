@@ -1,0 +1,9 @@
+#声明这是一个Eureka的服务器
+eureka:
+  client:
+    register-with-eureka: false #是否将自己的信息注册到Eureka服务器
+    fetch-registry: false #是否到Eureka服务器中抓取注册信息
+server:
+  port: 8761
+
+

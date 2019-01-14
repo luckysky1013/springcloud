@@ -1,0 +1,12 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: service-consumer
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+  instance:
+    prefer-ip-address: true

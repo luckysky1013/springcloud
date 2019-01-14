@@ -1,0 +1,18 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# maven
+target/
+
+# eclipse
+.settings/
+.project
+.classpath
+.metadata/
+.recommenders/
+RemoteSystemsTempFiles/
+
+
+# mac folder
+.DS_Store

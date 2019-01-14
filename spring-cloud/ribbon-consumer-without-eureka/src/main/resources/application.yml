@@ -1,0 +1,14 @@
+server:
+  port: 8010
+spring:
+  application:
+    name: ribbon-consumer
+#禁用EUreka服务注册中心
+ribbon:
+  eureka:
+   enabled: false
+#服务提供者的applicationName
+service-provider:
+  ribbon:
+#设置ServerList的静态地址
+    listOfServers: localhost:8001,localhost:8002

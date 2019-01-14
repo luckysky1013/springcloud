@@ -1,0 +1,37 @@
+server:
+  port: 8000
+spring:
+  ##配置数据源
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springcloud?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+  ##配置jpa
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  #应用程序名
+  application:
+    name: service-provider
+eureka:
+  client:
+    service-url:
+      #高可用Eureka 集群
+#      defaultZone: http://peer1:8761/eureka/,http://peer2:8762/eureka/
+      defaultZone: http://localhost:8761/eureka/
+  ##将自己的ip注册到Eureka服务注册中心
+  instance:
+    prefer-ip-address: true
+    #自定义元数据 ，key/vaule 可以随便写
+    metadata-map:
+      my-metadata: 自定义的元数据
+
+
+
+
+
+
+
+

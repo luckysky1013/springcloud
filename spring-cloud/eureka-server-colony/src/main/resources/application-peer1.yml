@@ -1,0 +1,17 @@
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: peer1
+    # 将自己的ip注册到Eureka Server上   如果不配置该属性  则默认为false且表示注册微服务所在操作系统的hostname到Eureka Server
+    prefer-ip-address: true
+  client:
+    # 表示是否注册自身到eureka服务器
+    # register-with-eureka: false
+    # 是否从eureka上获取注册信息
+    # fetch-registry: false
+    service-url:
+      defaultZone: http://peer2:8762/eureka/
+
+
+

@@ -1,0 +1,8 @@
+#配置Eureka 高可用集群
+spring:
+  application:
+    name: eureka
+  profiles:
+    active: peer2
+
+

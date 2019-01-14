@@ -1,0 +1,16 @@
+server:
+  port: 8761
+eureka:
+  client:
+    # 表示是否注册自身到eureka服务器
+    register-with-eureka: false
+    # 是否从eureka上获取注册信息
+    fetch-registry: false
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  security:
+    user:
+      name: liujian  #配置登录的账号是 liujian
+      password: 123456  #密码
+
